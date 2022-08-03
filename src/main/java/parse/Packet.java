@@ -44,6 +44,7 @@ public class Packet {
     }
 
     public static void main(String[] args) {
+        // 전문 생성
         Item item1 = Item.create("이름", 20, "홍길동");
         Item item2 = Item.create("전화번호", 11, "01011112222");
 
@@ -52,5 +53,12 @@ public class Packet {
         packet.addItem(item2);
 
         System.out.printf("[%s]", packet.raw());
+
+        // 전문 파싱
+        Packet receivePacket = new Packet();
+        // 값은 파싱을 해야 알 수 있으므로 null 로 세팅한다.
+        receivePacket.addItem(Item.create("생일", 8, null));
+        receivePacket.addItem(Item.create("주소", 50, null));
+        receivePacket.parse("19801215서울시 송파구 잠실동 123-3               ");
     }
 }
