@@ -1,7 +1,7 @@
 package parse;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
 
 /**
  * 완전한 송신 전문은 `이름+전화번호` 처럼 여러개의 아이템을 합쳐서 만든다.
@@ -13,6 +13,11 @@ public class Packet {
      * Item 갯수는 가변이므로 ArrayList 에 담았다.
      */
     private ArrayList<Item> items = new ArrayList<>();
+    /**
+     * Item 을 Access 할 때 , Item 이름으로 Access 할 수 있도록 HashMap 객체를 추가
+     * Key 는 아이템의 이름, Value 는 Item 이다.
+     */
+    private HashMap<String, Item> nameAccess = new HashMap<>();
 
     /**
      * Item 을 리스트 items 에 추가한다.
