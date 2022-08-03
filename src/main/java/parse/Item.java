@@ -62,6 +62,22 @@ public class Item {
        return padded.toString();
     }
 
+    /**
+     * 이 static 메소드는 Item 객체를 쉽게 생성해서 반환한다.
+     * 객체를 생성하는 static 메소드를 팩토리 메소드라고 한다.
+     * @param name Item 의 이름
+     * @param length Item 의 길이
+     * @param value Item 의 값
+     * @return Item 을 반환한다.
+     */
+    public static Item create(String name, int length, String value) {
+       Item item = new Item();
+       item.setName(name);
+       item.setLength(length);
+       item.setValue(value);
+       return item;
+    }
+
     public static void main(String[] args) {
         Item item = new Item();    // 항목을 생성한다.
         item.setName("이름");    // 이름을 "이름" 으로 저장한다.
