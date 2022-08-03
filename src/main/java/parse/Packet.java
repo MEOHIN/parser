@@ -1,5 +1,6 @@
 package parse;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -29,6 +30,31 @@ public class Packet {
      */
     public Item getItem(int index) {
         return this.items.get(index);
+    }
+
+    /**
+     * 이 메소드는 다음과 같이 동작한다.
+     * 1. 수신받은 전문을 먼저 바이트 배열로 바꾼다.
+     * 2. 수신 전문 규격에 의해 위에서 만들어진 receivePacket 아이템들을 순차적으로 돌면서 아이템의 길이만큼 temp 바이트 배열을 생성한다.
+     * 3. System.arraycopy() 를 이용해서 값을 복사한다.
+     *
+     * System.arraycopy() 사용 방법은 다음과 같다.
+     * System.arraycopy(소스, 소스시작위치, 대상, 대상시작위치, 복사할길이)
+     *
+     * @param data 수신받은 전문
+     */
+    public void parse(String data) {
+        byte[] bData = data.getBytes();
+        int pos = 0;
+
+        for (Item item : items) {
+            byte[] temp = new byte[item.getLength()];
+            System.arraycopy(bData, pos, temp, 0, item.getLength());
+            // 소스시작위치는 아이템 길이만큼 계속 증가해야 한다.
+            pos += item.getLength();
+            item.setValue(new String(temp));
+        }
+
     }
 
     /**
