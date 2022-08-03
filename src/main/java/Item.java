@@ -34,4 +34,19 @@ public class Item {
     public void setValue(String value) {
         this.value = value;
     }
+
+    /**
+     * 이 method 는 항목의 값을 반환한다.
+     * @return Item 클래스의 value 를 반환한다.
+     */
+   public String raw() {
+        return this.value;
+    }
+
+    public static void main(String[] args) {
+        Item item = new Item();    // 항목을 생성한다.
+        item.setName("이름");    // 이름을 "이름" 으로 저장한다.
+        item.setLength(20);    // 길이를 20 으로 저장한다.
+        item.setValue("홍길동");    // 값을 "홍길동" 으로 저장한다.
+    }
 }
