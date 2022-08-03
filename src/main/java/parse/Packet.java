@@ -83,7 +83,7 @@ public class Packet {
         packet.addItem(item1);
         packet.addItem(item2);
 
-        System.out.printf("[%s]", packet.raw());
+        System.out.printf("[%s]\n", packet.raw());
 
         // 전문 파싱
         Packet receivePacket = new Packet();
