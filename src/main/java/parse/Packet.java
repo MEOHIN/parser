@@ -22,10 +22,16 @@ public class Packet {
     /**
      * Item 을 리스트 items 에 추가(.add)한다.
      * Item 을 HashMap nameAccess 에 추가(.put)한다.
+     * 동일한 이름으로 사용하는 Item 이 2개 이상일 경우에 nameAccess 의 Key 가 종복되는 문제가 발생한다.
+     * 따라서 전문 생성시 동일한 이름으로 Item 을 설정할 수 없도록 한다.
      * @param item 아이템
      */
     public void addItem(Item item) {
         this.items.add(item);
+        // 이름이 중복되지 않도록, 동일한 Item 이름이면 RuntimeException 을 발생시킨다.
+        if (nameAccess.containsKey(item.getName())) {
+            throw new RuntimeException("Duplicated item name:[" + item.getName() + "]");
+        }
         nameAccess.put(item.getName(), item);
     }
 
