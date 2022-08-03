@@ -20,11 +20,13 @@ public class Packet {
     private HashMap<String, Item> nameAccess = new HashMap<>();
 
     /**
-     * Item 을 리스트 items 에 추가한다.
+     * Item 을 리스트 items 에 추가(.add)한다.
+     * Item 을 HashMap nameAccess 에 추가(.put)한다.
      * @param item 아이템
      */
     public void addItem(Item item) {
         this.items.add(item);
+        nameAccess.put(item.getName(), item);
     }
 
     /**
