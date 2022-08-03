@@ -113,6 +113,6 @@ public class Packet {
         receivePacket.addItem(Item.create("주소", 50, null));
         receivePacket.parse("19801215서울시 송파구 잠실동 123-3               ");
 
-        System.out.println(receivePacket.getItem(1).raw());
+        System.out.println(receivePacket.getItem("주소").raw());
     }
 }
