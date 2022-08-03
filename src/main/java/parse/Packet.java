@@ -56,14 +56,19 @@ public class Packet {
      * @param data 수신받은 전문
      */
     public void parse(String data) {
+        // 수신받은 전문을 바이트 배열로 바꾼다.
         byte[] bData = data.getBytes();
         int pos = 0;
 
+        // 아이템 리스트를 순차적으로 반복한다. 이 때 아이템 리스트는 수신 전문 규격에 의해 만들어진 receivePacket 이다.
         for (Item item : items) {
+            // 아이템의 길이만큼 바이트 배열 temp 를 생성한다.
             byte[] temp = new byte[item.getLength()];
+            // 값을 복사한다.
             System.arraycopy(bData, pos, temp, 0, item.getLength());
             // 소스시작위치는 아이템 길이만큼 계속 증가해야 한다.
             pos += item.getLength();
+            // temp 값이 복사되면 item 에 value 를 세팅한다.
             item.setValue(new String(temp));
         }
 
