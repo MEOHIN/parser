@@ -44,15 +44,8 @@ public class Packet {
     }
 
     public static void main(String[] args) {
-        Item item1 = new Item();
-        item1.setName("이름");
-        item1.setLength(20);
-        item1.setValue("홍길동");
-
-        Item item2 = new Item();
-        item2.setName("전화번호");
-        item2.setLength(11);
-        item2.setValue("01011112222");
+        Item item1 = Item.create("이름", 20, "홍길동");
+        Item item2 = Item.create("전화번호", 11, "01011112222");
 
         Packet packet = new Packet();
         packet.addItem(item1);
