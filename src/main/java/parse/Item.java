@@ -1,9 +1,11 @@
+package parse;
+
 import java.nio.charset.StandardCharsets;
 
 /**
  * 데이터 성격의 클래스를 생성할 땐, 필요한 속성들을 private 으로 선언하고 getter, setter 를 만들어서 사용한다.
  *
- * 이 class 는 전문을 생성하는 항목을 나타낸다.
+ * 이 클래스는 전문을 생성하는 항목을 나타낸다.
  * 항목은 이름, 길이, 값이 필요하다.
  * 항목의 예시는 다음과 같다.
  * 이름: "이름", "전화번호"
