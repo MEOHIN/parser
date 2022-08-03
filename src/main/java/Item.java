@@ -7,7 +7,7 @@
  * 값: "홍길동", "01011112222"
  */
 public class Item {
-    String name;
-    int length;
-    String value;
+    private String name;
+    private int length;
+    private String value;
 }
