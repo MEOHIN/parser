@@ -33,7 +33,19 @@ public class Packet {
     }
 
     /**
-     * 이 메소드는 다음과 같이 동작한다.
+     * 이 메소드는 items 의 항목을 하나씩 Item 클래스의 raw() 메소드에 대입해서 반환된 값을 모두 더한 Packet 의 전문을 반환한다.
+     * @return Packet 의 전문을 반환한다.
+     */
+    public String raw() {
+        StringBuilder result = new StringBuilder();
+        for (Item item : items) {
+            result.append(item.raw());
+        }
+        return result.toString();
+    }
+
+    /**
+     * 이 메소드는 Packet 클래스에 추가한 아이템들의 값을 세탕한다.
      * 1. 수신받은 전문을 먼저 바이트 배열로 바꾼다.
      * 2. 수신 전문 규격에 의해 위에서 만들어진 receivePacket 아이템들을 순차적으로 돌면서 아이템의 길이만큼 temp 바이트 배열을 생성한다.
      * 3. System.arraycopy() 를 이용해서 값을 복사한다.
@@ -55,18 +67,6 @@ public class Packet {
             item.setValue(new String(temp));
         }
 
-    }
-
-    /**
-     * 이 메소드는 items 의 항목을 하나씩 Item 클래스의 raw() 메소드에 대입해서 반환된 값을 모두 더한 Packet 의 전문을 반환한다.
-     * @return Packet 의 전문을 반환한다.
-     */
-    public String raw() {
-        StringBuilder result = new StringBuilder();
-        for (Item item : items) {
-            result.append(item.raw());
-        }
-        return result.toString();
     }
 
     public static void main(String[] args) {
