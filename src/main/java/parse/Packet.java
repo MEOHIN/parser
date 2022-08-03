@@ -30,6 +30,15 @@ public class Packet {
     }
 
     /**
+     * 이름으로 Item 을 가져온다.
+     * @param name 이름
+     * @return 이름으로 가져온 아이템을 반환한다.
+     */
+    public Item getItem(String name) {
+        return nameAccess.get(name);
+    }
+
+    /**
      * Item 을 가져온다.
      * @param index items 리스트의 순번
      * @return items 리스트에서 입력받은 순번에 있는 item 을 반환한다.
