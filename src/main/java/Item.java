@@ -1,4 +1,8 @@
+import java.nio.charset.StandardCharsets;
+
 /**
+ * 데이터 성격의 클래스를 생성할 땐, 필요한 속성들을 private 으로 선언하고 getter, setter 를 만들어서 사용한다.
+ *
  * 이 class 는 전문을 생성하는 항목을 나타낸다.
  * 항목은 이름, 길이, 값이 필요하다.
  * 항목의 예시는 다음과 같다.
@@ -40,7 +44,20 @@ public class Item {
      * @return Item 클래스의 value 를 반환한다.
      */
    public String raw() {
-        return this.value;
+       StringBuilder padded = new StringBuilder(this.value);
+       /*
+        * 자바는 한글 한 글자의 길이를 1도 계산한다.
+        * 문자열.length() 로 길이를 세면 바이트의 실제 길이와 다르기 때문에 오류가 발생한다.
+        * 문자열.toString().getByte().length 은 문자열을 바이트로 변환하여 길이를 체크한다.
+        * "홍길동".length();    // 3
+        * "홍길동".getByte().length;    // 9
+        *
+        * 따라서 전문 송수신할 때 길이는 바이트 단위로 변환한 후에 체크하는 것이 안전하다.
+        */
+       while (padded.toString().getBytes(StandardCharsets.UTF_8).length < this.length) {
+           padded.append(' ');
+       }
+       return padded.toString();
     }
 
     public static void main(String[] args) {
@@ -48,5 +65,7 @@ public class Item {
         item.setName("이름");    // 이름을 "이름" 으로 저장한다.
         item.setLength(20);    // 길이를 20 으로 저장한다.
         item.setValue("홍길동");    // 값을 "홍길동" 으로 저장한다.
+
+        System.out.printf("[%s]", item.raw());
     }
 }
